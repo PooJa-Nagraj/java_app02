@@ -33,35 +33,35 @@ pipeline{
                }
             }
         }
-        //  stage('Integration Test maven'){
-        //  when { expression {  params.action == 'create' } }
-        //     steps{
-        //        script{
+         stage('Integration Test maven'){
+         when { expression {  params.action == 'create' } }
+            steps{
+               script{
                    
-        //            mvnIntegrationTest()
-        //        }
-        //     }
-        // }
-        // stage('Static code analysis: Sonarqube'){
-        //  when { expression {  params.action == 'create' } }
-        //     steps{
-        //        script{
+                   mvnIntegrationTest()
+               }
+            }
+        }
+        stage('Static code analysis: Sonarqube'){
+         when { expression {  params.action == 'create' } }
+            steps{
+               script{
                    
-        //            def SonarQubecredentialsId = 'sonarqube'
-        //            statiCodeAnalysis(SonarQubecredentialsId)
-        //        }
-        //     }
-        // }
-        // stage('Quality Gate Status Check : Sonarqube'){
-        //  when { expression {  params.action == 'create' } }
-        //     steps{
-        //        script{
+                   def SonarQubecredentialsId = 'sonarqube'
+                   statiCodeAnalysis(SonarQubecredentialsId)
+               }
+            }
+        }
+        stage('Quality Gate Status Check : Sonarqube'){
+         when { expression {  params.action == 'create' } }
+            steps{
+               script{
                    
-        //            def SonarQubecredentialsId = 'sonarqube'
-        //            QualityGateStatus(SonarQubecredentialsId)
-        //        }
-        //     }
-        // }
+                   def SonarQubecredentialsId = 'sonarqube'
+                   QualityGateStatus(SonarQubecredentialsId)
+               }
+            }
+        }
         // stage('Maven Build : maven'){
         //  when { expression {  params.action == 'create' } }
         //     steps{
